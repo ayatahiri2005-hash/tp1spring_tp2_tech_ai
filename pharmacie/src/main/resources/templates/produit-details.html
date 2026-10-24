@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: entete('Détails du produit')}"></head>
+<body>
+    <nav th:replace="~{fragments :: menu}"></nav>
+
+    <main>
+        <p><a class="retour" th:href="@{/produits}">← Retour à la liste</a></p>
+        <h1 th:text="${produit.nom}">Nom du produit</h1>
+
+        <div class="carte">
+            <h2>Informations générales</h2>
+            <p><strong>Description :</strong> <span th:text="${produit.description}"></span></p>
+            <p><strong>Prix :</strong> <span th:text="${#numbers.formatDecimal(produit.prix, 1, 2)} + ' DH'"></span></p>
+            <p><strong>Code-barres :</strong> <span th:text="${produit.codeBarre}"></span></p>
+            <p th:if="${produit.dateExpiration != null}">
+                <strong>Expiration :</strong>
+                <span th:text="${#temporals.format(produit.dateExpiration, 'dd/MM/yyyy')}"
+                      th:classappend="${produit.dateExpiration.isBefore(T(java.time.LocalDate).now())} ? 'expire'"></span>
+            </p>
+        </div>
+
+        <div class="carte">
+            <h2>Classement</h2>
+            <p th:if="${produit.categorie != null}">
+                <strong>Catégorie :</strong> <span th:text="${produit.categorie.nom}"></span>
+            </p>
+            <p th:if="${produit.fournisseur != null}">
+                <strong>Fournisseur :</strong>
+                <span th:text="${produit.fournisseur.nom}"></span>
+                (<span th:text="${produit.fournisseur.adresse}"></span>)
+            </p>
+            <p>
+                <strong>Tags :</strong>
+                <span class="tag" th:each="t : ${produit.tags}" th:text="${t.libelle}">tag</span>
+            </p>
+        </div>
+
+        <div class="carte" th:if="${produit.detailProduit != null}">
+            <h2>Détails du médicament</h2>
+            <p><strong>Fabricant :</strong> <span th:text="${produit.detailProduit.fabricant}"></span></p>
+            <p><strong>Pays d'origine :</strong> <span th:text="${produit.detailProduit.paysOrigine}"></span></p>
+            <p><strong>Composition :</strong> <span th:text="${produit.detailProduit.composition}"></span></p>
+            <p><strong>Dosage :</strong> <span th:text="${produit.detailProduit.dosage}"></span></p>
+            <p><strong>Indications :</strong> <span th:text="${produit.detailProduit.indications}"></span></p>
+        </div>
+    </main>
+</body>
+</html>

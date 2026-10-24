@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="entete(titre)">
+    <meta charset="UTF-8">
+    <title th:text="${titre}">Pharmacie</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <nav th:fragment="menu">
+        <a th:href="@{/produits}">Produits</a>
+        <a th:href="@{/categories}">Catégories</a>
+        <a th:href="@{/fournisseurs}">Fournisseurs</a>
+        <a th:href="@{/tags}">Tags</a>
+    </nav>
+</body>
+</html>

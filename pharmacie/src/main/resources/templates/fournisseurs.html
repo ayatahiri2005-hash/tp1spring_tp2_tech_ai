@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: entete('Fournisseurs')}"></head>
+<body>
+    <nav th:replace="~{fragments :: menu}"></nav>
+
+    <main>
+        <h1>Fournisseurs</h1>
+        <table>
+            <thead>
+                <tr><th>ID</th><th>Nom</th><th>Contact</th><th>Adresse</th><th>Nombre de produits</th></tr>
+            </thead>
+            <tbody>
+                <tr th:each="f : ${fournisseurs}">
+                    <td th:text="${f.id}">1</td>
+                    <td th:text="${f.nom}">Nom</td>
+                    <td th:text="${f.contact}">Contact</td>
+                    <td th:text="${f.adresse}">Adresse</td>
+                    <td th:text="${#lists.size(f.produits)}">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: entete('Catégories')}"></head>
+<body>
+    <nav th:replace="~{fragments :: menu}"></nav>
+
+    <main>
+        <h1>Catégories</h1>
+        <table>
+            <thead>
+                <tr><th>ID</th><th>Nom</th><th>Description</th><th>Nombre de produits</th></tr>
+            </thead>
+            <tbody>
+                <tr th:each="c : ${categories}">
+                    <td th:text="${c.id}">1</td>
+                    <td th:text="${c.nom}">Nom</td>
+                    <td th:text="${c.description}">Description</td>
+                    <td th:text="${#lists.size(c.produits)}">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

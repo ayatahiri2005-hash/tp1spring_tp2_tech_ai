@@ -1,0 +1,15 @@
+body { font-family: Arial, sans-serif; margin: 0; background: #f4f7f6; color: #222; }
+nav { background: #1b7f5c; padding: 12px 24px; }
+nav a { color: white; text-decoration: none; margin-right: 20px; font-weight: bold; }
+nav a:hover { text-decoration: underline; }
+main { max-width: 1100px; margin: 24px auto; padding: 0 16px; }
+h1 { color: #1b7f5c; }
+table { width: 100%; border-collapse: collapse; background: white; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+th, td { padding: 10px 12px; border-bottom: 1px solid #e3e3e3; text-align: left; }
+th { background: #1b7f5c; color: white; }
+tr:hover { background: #f0faf6; }
+.tag { display: inline-block; background: #d9f0e7; color: #14603f; padding: 2px 8px; border-radius: 10px; font-size: 0.85em; margin: 1px; }
+.expire { color: #c0392b; font-weight: bold; }
+.carte { background: white; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+.carte h2 { margin-top: 0; color: #1b7f5c; }
+a.retour { color: #1b7f5c; }

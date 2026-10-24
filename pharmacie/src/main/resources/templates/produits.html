@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: entete('Produits')}"></head>
+<body>
+    <nav th:replace="~{fragments :: menu}"></nav>
+
+    <main>
+        <h1>Liste des produits</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Catégorie</th>
+                    <th>Fournisseur</th>
+                    <th>Expiration</th>
+                    <th>Tags</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p : ${produits}">
+                    <td th:text="${p.id}">1</td>
+                    <td th:text="${p.nom}">Nom</td>
+                    <td th:text="${#numbers.formatDecimal(p.prix, 1, 2)} + ' DH'">0 DH</td>
+                    <td th:text="${p.categorie != null} ? ${p.categorie.nom} : '-'">Catégorie</td>
+                    <td th:text="${p.fournisseur != null} ? ${p.fournisseur.nom} : '-'">Fournisseur</td>
+                    <td th:if="${p.dateExpiration != null}"
+                        th:text="${#temporals.format(p.dateExpiration, 'dd/MM/yyyy')}"
+                        th:classappend="${p.dateExpiration.isBefore(T(java.time.LocalDate).now())} ? 'expire'">01/01/2026</td>
+                    <td th:unless="${p.dateExpiration != null}">-</td>
+                    <td>
+                        <span class="tag" th:each="t : ${p.tags}" th:text="${t.libelle}">tag</span>
+                    </td>
+                    <td><a th:href="@{/produits/{id}(id=${p.id})}">Détails</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
